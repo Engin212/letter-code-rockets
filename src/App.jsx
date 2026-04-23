@@ -12,17 +12,17 @@ import {
   Brain,
 } from "lucide-react";
 
-const GAME_DURATION = 90;
+const GAME_DURATION = 100;
 const START_Y = 108;
 const EXIT_Y = -10;
 const LANES = [10, 22, 34, 46, 58, 70, 82];
 
 const LEVELS = [
-  { level: 1, spawnEvery: 1850, speedMin: 8.5, speedMax: 10.5, points: 10 },
-  { level: 2, spawnEvery: 1550, speedMin: 10.5, speedMax: 12.5, points: 12 },
-  { level: 3, spawnEvery: 1250, speedMin: 12.5, speedMax: 14.5, points: 14 },
-  { level: 4, spawnEvery: 980, speedMin: 14.5, speedMax: 17, points: 16 },
-  { level: 5, spawnEvery: 760, speedMin: 17, speedMax: 20, points: 18 },
+  { level: 1, spawnEvery: 3000, speedMin: 4.5, speedMax: 6, points: 10 },
+  { level: 2, spawnEvery: 2600, speedMin: 6, speedMax: 7.5, points: 12 },
+  { level: 3, spawnEvery: 2200, speedMin: 7.5, speedMax: 9, points: 14 },
+  { level: 4, spawnEvery: 2100, speedMin: 8, speedMax: 9.5, points: 16 },
+  { level: 5, spawnEvery: 1900, speedMin: 9, speedMax: 10.5, points: 18 },
 ];
 
 const ROCKET_COLORS = [
@@ -178,7 +178,7 @@ function createLetterStats(language) {
 }
 
 function getLevelFromElapsed(elapsed) {
-  return clamp(Math.floor(elapsed / 18) + 1, 1, 5);
+  return clamp(Math.floor(elapsed / 22) + 1, 1, 5);
 }
 
 function getDifficultyValue(stats, letter) {
@@ -207,8 +207,8 @@ function chooseTargetRow(spawnedByRow) {
 }
 
 function calcStars(wrongPresses, escapedRockets) {
-  if (escapedRockets === 0 && wrongPresses <= 2) return 3;
-  if (escapedRockets <= 4 && wrongPresses <= 8) return 2;
+  if (escapedRockets <= 8 && wrongPresses <= 20) return 3;
+  if (escapedRockets <= 20 && wrongPresses <= 35) return 2;
   return 1;
 }
 
